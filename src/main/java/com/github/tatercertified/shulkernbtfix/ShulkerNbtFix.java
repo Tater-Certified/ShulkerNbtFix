@@ -9,6 +9,8 @@ public class ShulkerNbtFix implements ModInitializer {
 
     public static RecipeSerializer<ShulkerBoxRecipe> SHULKER_BOX_NBT = RecipeSerializer.register("crafting_shaped_shulker_box", new SpecialRecipeSerializer<>(ShulkerBoxRecipe::new));
 
+
+
     @Override
     public void onInitialize() {
     }
