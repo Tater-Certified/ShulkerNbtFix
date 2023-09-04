@@ -2,7 +2,7 @@ package com.github.tatercertified.shulkernbtfix.recipe;
 
 import com.github.tatercertified.shulkernbtfix.ShulkerNbtFix;
 import eu.pb4.polymer.core.api.item.PolymerRecipe;
-import net.minecraft.inventory.RecipeInputInventory;
+import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
@@ -23,9 +23,13 @@ public class ShulkerBoxRecipe extends SpecialCraftingRecipe implements PolymerRe
     public ShulkerBoxRecipe(Identifier id, CraftingRecipeCategory category) {
         super(id, category);
     }
+    @Override
+    public @Nullable Recipe<?> getPolymerReplacement(ServerPlayerEntity player) {
+        return PolymerRecipe.createCraftingRecipe(this);
+    }
 
     @Override
-    public boolean matches(RecipeInputInventory craftingInventory, World world) {
+    public boolean matches(CraftingInventory craftingInventory, World world) {
         for (int i = 0; i < 3; i++) {
             ItemStack stack = craftingInventory.getStack(i);
             if (!stack.isEmpty() && stack.getItem() == Items.SHULKER_SHELL) {
@@ -44,7 +48,7 @@ public class ShulkerBoxRecipe extends SpecialCraftingRecipe implements PolymerRe
     }
 
     @Override
-    public ItemStack craft(RecipeInputInventory inventory, DynamicRegistryManager registryManager) {
+    public ItemStack craft(CraftingInventory inventory, DynamicRegistryManager registryManager) {
         ItemStack output = new ItemStack(Items.SHULKER_BOX);
         NbtCompound compound = output.getOrCreateNbt();
         NbtCompound block_entity_compound = new NbtCompound();
@@ -54,11 +58,6 @@ public class ShulkerBoxRecipe extends SpecialCraftingRecipe implements PolymerRe
         block_entity_compound.putString("id", "minecraft:shulker_box");
         compound.put("BlockEntityTag", block_entity_compound);
         return output;
-    }
-
-    @Override
-    public @Nullable Recipe<?> getPolymerReplacement(ServerPlayerEntity player) {
-        return PolymerRecipe.createCraftingRecipe(this);
     }
 
     @Override
