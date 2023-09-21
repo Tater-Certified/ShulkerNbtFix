@@ -14,14 +14,14 @@ import net.minecraft.recipe.SpecialCraftingRecipe;
 import net.minecraft.recipe.book.CraftingRecipeCategory;
 import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class ShulkerBoxRecipe extends SpecialCraftingRecipe implements PolymerRecipe {
 
-    public ShulkerBoxRecipe(Identifier id, CraftingRecipeCategory category) {
-        super(id, category);
+    public ShulkerBoxRecipe(CraftingRecipeCategory category) {
+        super(category);
+
     }
 
     @Override
@@ -64,11 +64,6 @@ public class ShulkerBoxRecipe extends SpecialCraftingRecipe implements PolymerRe
     @Override
     public boolean fits(int width, int height) {
         return width * height >= 3;
-    }
-
-    @Override
-    public ItemStack getOutput(DynamicRegistryManager registryManager) {
-        return super.getOutput(registryManager);
     }
 
     @Override
