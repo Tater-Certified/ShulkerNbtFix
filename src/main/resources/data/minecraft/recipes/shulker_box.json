@@ -1,5 +1,21 @@
 {
-  "type": "minecraft:crafting_shaped_shulker_box",
+  "type": "shulkernbtfix:crafting_shaped_shulker_box",
   "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:chest"
+    },
+    "-": {
+      "item": "minecraft:shulker_shell"
+    }
+  },
+  "pattern": [
+    "-",
+    "#",
+    "-"
+  ],
+  "result": {
+    "item": "minecraft:shulker_box"
+  },
   "show_notification": true
 }

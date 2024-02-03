@@ -1,7 +1,6 @@
 package com.github.tatercertified.shulkernbtfix;
 
 import net.fabricmc.loader.api.FabricLoader;
-import net.fabricmc.loader.api.ModContainer;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -13,6 +12,7 @@ import java.util.Set;
 public class MixinConfig implements IMixinConfigPlugin {
     @Override
     public void onLoad(String mixinPackage) {
+        Config.init();
     }
 
     @Override
@@ -46,8 +46,6 @@ public class MixinConfig implements IMixinConfigPlugin {
     }
 
     public boolean isModLoaded(String modId) {
-        FabricLoader fabricLoader = FabricLoader.getInstance();
-        ModContainer modContainer = fabricLoader.getModContainer(modId).orElse(null);
-        return modContainer != null && modContainer.getMetadata().containsCustomValue("mod_id");
+        return FabricLoader.getInstance().isModLoaded(modId);
     }
 }
